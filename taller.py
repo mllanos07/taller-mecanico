@@ -82,12 +82,12 @@ class Taller:
     def eliminar_cliente(self):
         limpiar()
         dni = input("DNI del cliente que se quiere eliminar: ")
-        # Primero eliminar datos asociados
+        #eliminar datos asociados
         self.cursor.execute("DELETE FROM Facturacion WHERE DNI_Cliente=%s", (dni,))
         self.cursor.execute("DELETE FROM Vehiculos WHERE DNI=%s", (dni,))
         self.cursor.execute("DELETE FROM Ficha_tecnica WHERE dni_cliente=%s", (dni,))
         self.db.commit()
-        # Ahora eliminar cliente
+        #eliminar cliente
         self.cursor.execute("DELETE FROM Clientes WHERE DNI=%s", (dni,))
         self.db.commit()
         print("Operacion realizada. Si el cliente existia, ya fue eliminado.")
